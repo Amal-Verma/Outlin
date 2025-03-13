@@ -8,6 +8,7 @@ export const handleMouseUp = (
   EditMousePoint: (mouseX: number, mouseY: number) => void,
   EditMouseDown: (mouseDown: boolean) => void,
   setTempObjects: (tempObject: Array<node>) => void,
+  setObjects: (Object: node | null) => void,
   tempObjects: Array<node>,
   mouseType: MOUSE,
   drawType: DRAW,
@@ -22,6 +23,8 @@ export const handleMouseUp = (
   EditMouseDown(false);
   EditMouseType(MOUSE.NONE);
   Tree.normalize();
+
+  setObjects(null);
 
   // Handle temporary objects based on draw type
   if (tempObjects.length) {

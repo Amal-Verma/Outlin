@@ -163,6 +163,7 @@ const Board: React.FC<boardProps> = (props) => {
           EditMousePoint,
           EditMouseDown,
           setTempObjects,
+          setObject,
           tempObjects,
           mouseType,
           drawType,

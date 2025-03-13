@@ -24,32 +24,32 @@ const SmallSelectedObject: React.FC<SmallSelectedObjectProps> = (props) => {
   };
 
   // Define the size and style for the large cube
-  const largeCubeSize = 13;
-  const largeCubeStyle: React.CSSProperties = {
-    position: "absolute",
-    backgroundColor: "red",
-    width: `${2 * largeCubeSize}px`,
-    height: `${2 * largeCubeSize}px`,
-  };
+  // const largeCubeSize = 13;
+  // const largeCubeStyle: React.CSSProperties = {
+  //   position: "absolute",
+  //   backgroundColor: "red",
+  //   width: `${2 * largeCubeSize}px`,
+  //   height: `${2 * largeCubeSize}px`,
+  // };
 
   // Get the coordinates for the small and large cubes
   const [x, y] = props.cood(smallCubeSize);
-  const [xl, yl] = props.cood(largeCubeSize);
+  // const [xl, yl] = props.cood(largeCubeSize);
 
   return (
     // Render the large and small cubes
-    <React.Fragment key={`cubeFragment${props.index}00${props.id}`}>
-      <div
-        key={`cubeLager${props.index}00${props.id}`}
-        style={{
-          left: xl,
-          top: yl,
-          ...largeCubeStyle,
-        }}
-        onMouseLeave={() => {
-          props.handleReset();
-        }}
-      ></div>
+    // <React.Fragment key={`cubeFragment${props.index}00${props.id}`}>
+      // <div
+      //   key={`cubeLager${props.index}00${props.id}`}
+      //   style={{
+      //     left: xl,
+      //     top: yl,
+      //     ...largeCubeStyle,
+      //   }}
+      //   onMouseLeave={() => {
+      //     props.handleReset();
+      //   }}
+      // ></div>
 
       <div
         key={`cubeSmall${props.index}00${props.id}`}
@@ -63,7 +63,7 @@ const SmallSelectedObject: React.FC<SmallSelectedObjectProps> = (props) => {
           props.handleReset();
         }}
       ></div>
-    </React.Fragment>
+    // </React.Fragment>
   );
 };
 
