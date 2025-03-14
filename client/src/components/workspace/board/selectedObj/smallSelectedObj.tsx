@@ -15,7 +15,7 @@ interface SmallSelectedObjectProps {
 // Define the SmallSelectedObject functional component
 const SmallSelectedObject: React.FC<SmallSelectedObjectProps> = (props) => {
   // Define the size and style for the small cube
-  const smallCubeSize = 7;
+  const smallCubeSize = 10;
   const smallCubeStyle: React.CSSProperties = {
     position: "absolute",
     backgroundColor: "black",

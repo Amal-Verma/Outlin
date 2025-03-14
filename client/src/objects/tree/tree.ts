@@ -46,37 +46,35 @@ export default class Tree {
     this.groupMap = new Map<string, multiset>();
 
     if (typeof window === undefined) {
-      this.root = new Node(new Rectangle(0, 0, 100000, 100000));
+      this.root = createNode(
+        this, 
+        new Rectangle(0, 0, 100000, 100000), 
+        "root", 
+        "root"
+      );
     } else {
       this.root = createNode(
         this,
-        new Rectangle(0, 0, window.innerWidth, window.innerHeight)
+        new Rectangle(0, 0, window.innerWidth, window.innerHeight),
+        "root",
+        "root"
       );
     }
 
     if (typeof window !== undefined) {
       this.insert(
-        new Node(
+        createNode(
+          this,
           new Rectangle(0, 0, window.innerWidth / 10, window.innerHeight / 10),
           "root"
         )
       );
       this.insert(
-        new Node(
+        createNode(
+          this,
           new Rectangle(
             window.innerWidth / 10,
             0,
-            window.innerWidth / 10,
-            window.innerHeight / 10
-          ),
-          "root"
-        )
-      );
-      this.insert(
-        new Node(
-          new Rectangle(
-            0,
-            window.innerHeight / 10,
             window.innerWidth / 10,
             window.innerHeight / 10
           ),
@@ -103,34 +101,31 @@ export default class Tree {
    */
   insert(newObj: node) {
     const group = newObj.group;
-    if (group != "root") {
-      if (!this.groupMap.has(group)) {
-        const newGroup = createNode(
-          this,
-          new Rectangle(0, 0, window.innerWidth, window.innerHeight),
-          group
-        );
-        newGroup.body.attributes.Colors["background-color"] =
-          "rgba(0, 0, 0, 0)";
-        // newGroup.body.Essentials.x = newObj.body.Essentials.x;
-        // newGroup.body.Essentials.y = newObj.body.Essentials.y;
-        // newGroup.body.Essentials.width = newObj.body.Essentials.width;
-        // newGroup.body.Essentials.height = newObj.body.Essentials.height;
+    // if (group) {
+    if (!this.groupMap.has(group)) {
+      const newGroup = createNode(
+        this,
+        new Rectangle(0, 0, window.innerWidth, window.innerHeight),
+        "root",
+        group
+      );
+      newGroup.body.attributes.Colors["background-color"] = "rgba(0, 0, 0, 0)";
 
-        this.groupMap.set(group, new MultiSet(newGroup));
-        const groupNode = this.groupMap.get(group)?.groupNode;
-        if (groupNode) {
-          insertNode(groupNode, this.root, true);
-        }
-      }
+      this.groupMap.get("root")?.insert(newGroup);
+      this.groupMap.set(group, new MultiSet(newGroup));
       const groupNode = this.groupMap.get(group)?.groupNode;
       if (groupNode) {
-        this.groupMap.get(group)?.insert(newObj);
-        insertNode(newObj, groupNode);
+        insertNode(groupNode, this.root, true);
       }
-    } else {
-      insertNode(newObj, this.root);
     }
+    const groupNode = this.groupMap.get(group)?.groupNode;
+    if (groupNode) {
+      this.groupMap.get(group)?.insert(newObj);
+      insertNode(newObj, groupNode);
+    }
+    // } else {
+    //   insertNode(newObj, this.root);
+    // }
     this.generateObjects();
   }
 
@@ -156,6 +151,7 @@ export default class Tree {
    */
   copySelectedObjects(offsetX: number, offsetY: number) {
     this.copyObjects = copySelectedObjects(
+      this,
       this.selectedObject,
       offsetX,
       offsetY
@@ -166,7 +162,7 @@ export default class Tree {
    * Pastes the copied objects into the tree.
    */
   pasteCopiedObjects() {
-    pasteCopiedObjects(this, this.copyObjects);
+    pasteCopiedObjects(this);
   }
 
   /**

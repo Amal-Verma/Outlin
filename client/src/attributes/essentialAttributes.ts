@@ -52,14 +52,5 @@ export const essentialAttributes = {
     react: {
       code: (value: string) => `${value}`
     }
-  },
-  // group : {
-  //   default: 'root',
-  //   ui: {
-  //     type: 'text'
-  //   },
-  //   react: {
-  //     code: (value: string) => `${value}`
-  //   }
-  // }
+  }
 };

@@ -11,9 +11,10 @@ import Node from "@/objects/node/node";
 export const createNode = (
   Tree: tree,
   obj: obj,
-  group: string = "root"
+  group: string = "root",
+  group_children: string | null = null
 ): node => {
-  const newNode = new Node(obj, group);
+  const newNode = new Node(obj, group, group_children);
   Tree.objectMap.set(newNode.id, newNode);
   return newNode;
 };

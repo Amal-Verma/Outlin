@@ -9,11 +9,17 @@ import { insertNode } from "./insert";
  * @param Tree - The tree to paste objects into.
  * @param copyObjects - The array of copied objects to paste.
  */
-export const pasteCopiedObjects = (Tree: tree, copyObjects: Array<obj>) => {
+
+let pasteCount = 0;
+
+export const pasteCopiedObjects = (Tree: tree) => {
   Tree.selectedObject = [];
-  copyObjects.map((obj) => {
+  Tree.copyObjects.map((obj) => {
     const newNode = createNode(Tree, cloneDeep(obj));
     Tree.selectedObject.push(newNode);
     insertNode(newNode, Tree.root);
   });
+
+  Tree.groupObjects(`paste-${pasteCount}`);
+  pasteCount++;
 };

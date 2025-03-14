@@ -59,7 +59,8 @@ export const importTree = (
   }
   groupNode.body.attributes.Colors["background-color"] =
           "rgba(0, 0, 0, 0)";
-  // groupNode.group = "root";
+  groupNode.group = "root";
+  groupNode.group_children = groupName;
 
   for (const node of nodeMap.values()) {
     Tree.objectMap.set(node.id, node);

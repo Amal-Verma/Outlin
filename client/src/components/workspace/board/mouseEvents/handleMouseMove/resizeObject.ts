@@ -1,4 +1,5 @@
 import { node, tree } from "@/types";
+import { getGroupNodes } from "./getgroupnodes";
 
 /**
  * Resizes the given object and its selected children nodes.
@@ -15,29 +16,43 @@ import { node, tree } from "@/types";
 export const resizeObject = (
   object: node | null,
   Tree: tree,
-  selectedObject: Array<node> | Set<node>,
+  selectedObject: Array<node>,
   dx1: number,
   dy1: number,
   dx2: number,
-  dy2: number
+  dy2: number,
 ) => {
-  if (
-    (selectedObject instanceof Set
-      ? selectedObject.size
-      : selectedObject.length) == 0
-  )
+  console.log("Resizing object", object?.id);
+  console.log("Selected objects", selectedObject);
+  if (selectedObject.length == 0)
     return;
   if (object === null) return;
 
-  const groupNode = Tree.groupMap.get(object.group)?.groupNode;
-  if (Array.isArray(selectedObject) && groupNode === object) {
-    const groupNodes = Tree.groupMap.get(object.group)?.nodes;
-    if (groupNodes) {
-      resizeObject(groupNode, Tree, groupNodes, dx1, dy1, dx2, dy2);
-    }
-    return;
-  }
+  // // first group resize as it is skipped
+  // if (
+  //   first_time && 
+  //   object.group_children) {
+  //   // const groupNodes = Tree.groupMap.get(object.group_children)?.nodes;
+  //   // if (groupNodes) {
 
+  //   //   resizeObject(object, Tree, groupNodes, dx1, dy1, dx2, dy2);
+  //   // }
+    
+  //   resizeObject(
+  //     object,
+  //     Tree, 
+  //     getGroupNodes(Tree, selectedObject), 
+  //     dx1, 
+  //     dy1, 
+  //     dx2, 
+  //     dy2, 
+  //     false);
+  //   return;
+  // }
+
+  selectedObject = getGroupNodes(Tree, selectedObject);
+
+  // Resize all selected object except object
   selectedObject.forEach((node) => {
     if (node.body === object.body) return;
     if (!object.body.contains(node.body)) return;
@@ -63,26 +78,26 @@ export const resizeObject = (
     const ndx2 = ndx1 + node.body.Essentials.width * dw;
     const ndy2 = ndy1 + node.body.Essentials.height * dh;
 
-    const groupMultiset = Tree.groupMap.get(node.group);
-    if (groupMultiset?.groupNode === node) {
-      const groupNodes = groupMultiset.nodes;
-      if (groupNodes) {
-        resizeObject(
-          groupMultiset.groupNode,
-          Tree,
-          groupNodes,
-          ndx1,
-          ndy1,
-          ndx2,
-          ndy2
-        );
-      }
-    } else {
+    // const groupMultiset = Tree.groupMap.get(node.group);
+    // if (node.group_children) {
+    //   const groupNodes = Tree.groupMap.get(node.group_children)?.nodes;
+    //   if (groupNodes) {
+    //     resizeObject(
+    //       node,
+    //       Tree,
+    //       groupNodes,
+    //       ndx1,
+    //       ndy1,
+    //       ndx2,
+    //       ndy2
+    //     );
+    //   }
+    // } else {
       node.body.Essentials.x += ndx1;
       node.body.Essentials.y += ndy1;
       node.body.Essentials.width = node.body.Essentials.width * dw;
       node.body.Essentials.height = node.body.Essentials.height * dh;
-    }
+    // }
   });
 
   object.body.Essentials.x += dx1;

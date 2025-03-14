@@ -1,14 +1,16 @@
-import { tree } from "@/types";
-import Node from "@/objects/node/node";
+import { tree, node } from "@/types";
 import Rectangle from "@/objects/rectangle/rectangle";
 import MultiSet from "@/objects/multiset/multiset";
+import { createNode } from "./createNode";
 import { insertNode } from "./insert";
 
 export const groupObjects = (
   Tree: tree,
-  groupName: string
+  groupName: string,
+  selectedObject: Array<node> = Tree.selectedObject
+
 ) => {
-  const selectedNodes = Tree.selectedObject;
+  const selectedNodes = selectedObject.filter(node => node.group === "root");
 
   if (selectedNodes.length === 0) {
     console.log("No objects selected to group.");
@@ -16,15 +18,18 @@ export const groupObjects = (
   }
 
   // Create a new group node
-  const groupNode = new Node(new Rectangle(0, 0, 100, 100), groupName);
+  const groupNode = createNode(Tree, new Rectangle(0, 0, 100, 100), "root", groupName);
   groupNode.body.attributes.Colors["background-color"] =
           "rgba(0, 0, 0, 0)";
+  
+  Tree.groupMap.get("root")?.insert(groupNode)
 
   // Create a new MultiSet for the group
   const groupSet = new MultiSet(groupNode);
 
   // Update the group of each selected node and add to the group set
   for (const node of selectedNodes) {
+    Tree.groupMap.get(node.group)?.erase(node);
     node.group = groupName;
     groupSet.insert(node);
   }
@@ -47,10 +52,11 @@ export const groupObjects = (
   // Insert the group node into the main tree
   insertNode(groupNode, Tree.root, true);
 
+  Tree.selectedObject = [groupNode];
   Tree.generateObjects();
 
   console.log(`Grouped ${selectedNodes.length} objects into group '${groupName}'.`);
 
-  // console.log("Grouped objects:", selectedNodes);
-  // console.log(Tree);
+  console.log("Grouped objects:", selectedNodes);
+  console.log(Tree);
 };

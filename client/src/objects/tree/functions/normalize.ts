@@ -10,12 +10,15 @@ export const normalize = (
   groupMap: Map<string, multiset>
 ) => {
   selectedObject.forEach((obj) => {
-    const groupNodes = groupMap.get(obj.group)?.nodes;
-    if (groupMap.get(obj.group)?.groupNode !== obj) {
+    if (!obj.group_children) {
       obj.body.normalize();
       groupMap.get(obj.group)?.update(obj);
-    } else if (groupNodes) {
-      normalize(Array.from(groupNodes), groupMap);
+    } 
+    else {
+      const groupNodes = groupMap.get(obj.group_children)?.nodes;
+      if (groupNodes){
+        normalize(Array.from(groupNodes), groupMap);
+      }
     }
   });
 };

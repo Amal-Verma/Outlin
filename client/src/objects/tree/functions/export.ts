@@ -19,7 +19,8 @@ export const exportTree = (
   }
 
   const dfs = (node: node, parentid: string = "no_it_is_root") => {
-    if (Tree.groupMap.get(node.group)?.groupNode !== node) {
+    // if (Tree.groupMap.get(node.group)?.groupNode !== node) {
+    if (!node.group_children) {
       jsonObject.nodes.push(convertNode(node));
       if (parentid !== "no_it_is_root")
       jsonObject.edges.push({source: parentid, target: node.id});

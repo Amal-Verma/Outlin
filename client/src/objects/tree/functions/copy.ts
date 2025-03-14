@@ -1,4 +1,4 @@
-import { node, obj } from "@/types";
+import { node, obj, tree } from "@/types";
 import cloneDeep from "lodash/cloneDeep";
 
 /**
@@ -9,15 +9,30 @@ import cloneDeep from "lodash/cloneDeep";
  * @returns An array of copied objects with updated positions.
  */
 export const copySelectedObjects = (
-  selectedObjects: Array<node>,
+  Tree: tree,
+  selectedObjects: Array<node> | Set<node>,
   offsetX: number,
   offsetY: number
 ): Array<obj> => {
-  const copyObjects = selectedObjects.map((node) => {
-    const obj = cloneDeep(node.body);
-    obj.Essentials.x += offsetX;
-    obj.Essentials.y += offsetY;
-    return obj;
+  const copyObjects: Array<obj> = [];
+  
+  Array.from(selectedObjects).forEach((node) => {
+    if (node.group_children) {
+      const groupNodes = Tree.groupMap.get(node.group_children)?.nodes;
+      if (groupNodes) {
+        const copiedGroupNodes = copySelectedObjects(Tree, groupNodes, offsetX, offsetY);
+        copyObjects.push(...copiedGroupNodes);
+      };
+
+    } else {
+      const obj = cloneDeep(node.body);
+      obj.Essentials.x += offsetX;
+      obj.Essentials.y += offsetY;
+      copyObjects.push(obj);
+    }
   });
+
+  console.log("Copied objects: ", copyObjects, selectedObjects);
+
   return copyObjects;
 };

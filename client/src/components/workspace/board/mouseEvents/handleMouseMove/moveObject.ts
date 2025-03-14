@@ -1,4 +1,5 @@
 import { node, tree } from "@/types";
+import { getGroupNodes } from "./getgroupnodes";
 
 /**
  * Moves the given selected objects by the specified dx and dy.
@@ -11,23 +12,17 @@ import { node, tree } from "@/types";
  */
 export const moveObject = (
   Tree: tree,
-  selectedObject: Array<node> | Set<node>,
+  selectedObject: Array<node>,
   dx: number,
-  dy: number
+  dy: number,
 ) => {
-  if (
-    (selectedObject instanceof Set
-      ? selectedObject.size
-      : selectedObject.length) == 0
-  )
+  if (selectedObject.length == 0)
     return;
+
+  selectedObject = getGroupNodes(Tree, selectedObject);
 
   selectedObject.forEach((node) => {
     node.body.Essentials.x += dx;
     node.body.Essentials.y += dy;
-    const groupMultiset = Tree.groupMap.get(node.group);
-    if (groupMultiset?.groupNode === node) {
-      moveObject(Tree, groupMultiset.nodes, dx, dy);
-    }
   });
 };
