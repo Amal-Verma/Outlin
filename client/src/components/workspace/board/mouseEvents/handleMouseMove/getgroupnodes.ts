@@ -4,7 +4,7 @@ export const getGroupNodes = (
   Tree: tree,
   objects: Array<node>
 ): Array<node> => {
-  let nodes = [...objects];
+  const nodes = [...objects];
   let idx = 0;
   while (idx < nodes.length) {
     const node = nodes[idx];

@@ -28,28 +28,6 @@ export const resizeObject = (
     return;
   if (object === null) return;
 
-  // // first group resize as it is skipped
-  // if (
-  //   first_time && 
-  //   object.group_children) {
-  //   // const groupNodes = Tree.groupMap.get(object.group_children)?.nodes;
-  //   // if (groupNodes) {
-
-  //   //   resizeObject(object, Tree, groupNodes, dx1, dy1, dx2, dy2);
-  //   // }
-    
-  //   resizeObject(
-  //     object,
-  //     Tree, 
-  //     getGroupNodes(Tree, selectedObject), 
-  //     dx1, 
-  //     dy1, 
-  //     dx2, 
-  //     dy2, 
-  //     false);
-  //   return;
-  // }
-
   selectedObject = getGroupNodes(Tree, selectedObject);
 
   // Resize all selected object except object
@@ -75,29 +53,10 @@ export const resizeObject = (
       dy1 +
       (node.body.Essentials.y - object.body.Essentials.y) * dh;
 
-    const ndx2 = ndx1 + node.body.Essentials.width * dw;
-    const ndy2 = ndy1 + node.body.Essentials.height * dh;
-
-    // const groupMultiset = Tree.groupMap.get(node.group);
-    // if (node.group_children) {
-    //   const groupNodes = Tree.groupMap.get(node.group_children)?.nodes;
-    //   if (groupNodes) {
-    //     resizeObject(
-    //       node,
-    //       Tree,
-    //       groupNodes,
-    //       ndx1,
-    //       ndy1,
-    //       ndx2,
-    //       ndy2
-    //     );
-    //   }
-    // } else {
-      node.body.Essentials.x += ndx1;
-      node.body.Essentials.y += ndy1;
-      node.body.Essentials.width = node.body.Essentials.width * dw;
-      node.body.Essentials.height = node.body.Essentials.height * dh;
-    // }
+    node.body.Essentials.x += ndx1;
+    node.body.Essentials.y += ndy1;
+    node.body.Essentials.width = node.body.Essentials.width * dw;
+    node.body.Essentials.height = node.body.Essentials.height * dh;
   });
 
   object.body.Essentials.x += dx1;

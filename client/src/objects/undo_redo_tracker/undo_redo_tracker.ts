@@ -5,14 +5,14 @@
  * @property {Array<any>} redo_queue - Queue containing operations that can be redone.
  */
 export default class UndoRedoTracker {
-  undo_queue: Array<any>;
-  redo_queue: Array<any>;
+  // undo_queue: Array<any>;
+  // redo_queue: Array<any>;
 
   /**
    * Creates an instance of UndoRedoTracker.
    */
   constructor() {
-    this.undo_queue = [];
-    this.redo_queue = [];
+    // this.undo_queue = [];
+    // this.redo_queue = [];
   }
 }

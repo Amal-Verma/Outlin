@@ -1,6 +1,5 @@
 import { obj, node, rectangle, multiset } from "@/types/object_types";
 import Rectangle from "@/objects/rectangle/rectangle";
-import Node from "../node/node";
 import MultiSet from "../multiset/multiset";
 
 import { insertNode } from "./functions/insert";
