@@ -1,4 +1,4 @@
-import { node, multiset } from "@/types";
+import { node, multiset } from "@/types/object_types";
 
 /**
  * Normalizes the selected objects and updates the group map.

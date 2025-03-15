@@ -1,4 +1,4 @@
-import { tree } from '@/types';
+import { tree } from '@/types/object_types';
 
 import { handleEscapeKeyDown } from './escapeKeyDown';
 import { handleDeleteKeyDown } from './deleteKeyDown';

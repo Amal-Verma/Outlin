@@ -6,7 +6,7 @@ import { borderAttributes } from "@/attributes/borderAttributes";
 import { animationAttributes } from "@/attributes/animationAttributes";
 import { customAttributes } from "@/attributes/customAttributes";
 import { positioningAttributes } from "@/attributes/positioningAttributes";
-import { getAttributeDetailType } from "@/types";
+import { getAttributeDetailType } from "@/types/object_types";
 
 import { useTree } from "@/hooks/useTree";
 

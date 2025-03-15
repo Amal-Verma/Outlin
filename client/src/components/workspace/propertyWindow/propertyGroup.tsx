@@ -4,7 +4,7 @@ import React from "react";
 
 import PropertyItem from "./propertyItem";
 import { getAttributeDetail } from "@/hooks/useAttribute";
-import { essentials, group } from "@/types";
+import { essentials, group } from "@/types/object_types";
 
 interface PropertyGroupProps {
   name: string;

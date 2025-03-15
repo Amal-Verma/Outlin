@@ -1,5 +1,5 @@
 import { DRAW, MOUSE } from "@/Enums/mouseEventsEnums";
-import { node, tree } from "@/types";
+import { node, tree } from "@/types/object_types";
 
 import { createNode } from "@/objects/tree/functions/createNode";
 

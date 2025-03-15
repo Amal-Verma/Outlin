@@ -1,4 +1,4 @@
-import { tree, node, obj } from "@/types";
+import { tree, node, obj } from "@/types/object_types";
 
 type newNode = {
   id: string,

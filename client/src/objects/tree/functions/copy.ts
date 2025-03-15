@@ -1,4 +1,4 @@
-import { node, obj, tree } from "@/types";
+import { node, obj, tree } from "@/types/object_types";
 import cloneDeep from "lodash/cloneDeep";
 
 /**

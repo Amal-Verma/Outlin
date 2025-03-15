@@ -1,4 +1,4 @@
-import { tree } from '@/types';
+import { tree } from '@/types/object_types';
 
 export const handlePasteKeyDown =  
 (

@@ -1,4 +1,4 @@
-import { rectangle } from '@/types';
+import { rectangle } from '@/types/object_types';
 import { objectToString } from './objectToString';
 
 /**

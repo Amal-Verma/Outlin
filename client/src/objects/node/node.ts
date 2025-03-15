@@ -1,4 +1,4 @@
-import { obj } from "@/types";
+import { obj } from "@/types/object_types";
 
 /**
  * Represents a node in a tree structure.

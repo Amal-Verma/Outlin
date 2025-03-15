@@ -1,7 +1,7 @@
 import { DRAW } from "@/Enums/mouseEventsEnums";
 import Rectangle from "@/objects/rectangle/rectangle";
 import Node from "@/objects/node/node";
-import { node } from "@/types";
+import { node } from "@/types/object_types";
 
 export const handleMouseDown = (
   e: React.MouseEvent<HTMLDivElement>,

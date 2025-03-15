@@ -1,4 +1,4 @@
-import { obj, tree } from "@/types";
+import { obj, tree } from "@/types/object_types";
 import cloneDeep from "lodash/cloneDeep";
 
 import { createNode } from "./createNode";

@@ -1,4 +1,4 @@
-import { attributes, essentials } from "@/types";
+import { attributes, essentials } from "@/types/object_types";
 import { getAttributes } from "./getAttributes";
 
 /**

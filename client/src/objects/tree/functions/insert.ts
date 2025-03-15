@@ -1,4 +1,4 @@
-import { node } from "@/types";
+import { node } from "@/types/object_types";
 
 /**
  * Inserts a new node into the tree.

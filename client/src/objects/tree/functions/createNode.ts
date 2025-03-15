@@ -1,4 +1,4 @@
-import { obj, node, tree } from "@/types";
+import { obj, node, tree } from "@/types/object_types";
 import Node from "@/objects/node/node";
 
 /**

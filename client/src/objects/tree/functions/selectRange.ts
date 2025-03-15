@@ -1,4 +1,4 @@
-import { node, rectangle } from "@/types";
+import { node, rectangle } from "@/types/object_types";
 
 /**
  * Recursively selects all nodes under the root node.

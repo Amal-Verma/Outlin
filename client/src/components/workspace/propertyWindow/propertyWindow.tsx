@@ -4,7 +4,7 @@ import React from "react";
 
 import PropertyGroup from "./propertyGroup";
 import AttributeSelectorModal from "./AttributeSelectorModal";
-import { tree } from "@/types";
+import { tree } from "@/types/object_types";
 import { useTree } from "@/hooks/useTree";
 
 interface PropertyWindowProps {

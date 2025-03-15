@@ -1,4 +1,4 @@
-import { node, tree }  from "@/types";
+import { node, tree }  from "@/types/object_types";
 
 export const getGroupNodes = (
   Tree: tree,

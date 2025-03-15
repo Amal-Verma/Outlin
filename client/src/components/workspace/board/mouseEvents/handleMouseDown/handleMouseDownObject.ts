@@ -1,6 +1,6 @@
 import { DRAW, MOUSE } from "@/Enums/mouseEventsEnums";
 
-import { node, tree } from "@/types";
+import { node, tree } from "@/types/object_types";
 
 let clickTimeout: NodeJS.Timeout | null = null;
 

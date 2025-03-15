@@ -1,4 +1,4 @@
-import { tree, node, obj } from "@/types";
+import { tree, node, obj } from "@/types/object_types";
 import Node from "@/objects/node/node";
 import Rectangle from "@/objects/rectangle/rectangle";
 import MultiSet from "@/objects/multiset/multiset";

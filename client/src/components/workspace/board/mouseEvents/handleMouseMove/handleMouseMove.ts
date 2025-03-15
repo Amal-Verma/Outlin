@@ -1,5 +1,5 @@
-import { DRAW, MOUSE } from "../../../../../Enums/mouseEventsEnums";
-import { tree, node } from "@/types";
+import { DRAW, MOUSE } from "@/Enums/mouseEventsEnums";
+import { tree, node } from "@/types/object_types";
 
 import { resizeObject } from "./resizeObject";
 import { moveObject } from "./moveObject";

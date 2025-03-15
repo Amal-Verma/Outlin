@@ -1,4 +1,4 @@
-import { node } from "@/types";
+import { node } from "@/types/object_types";
 
 /**
  * Generates an array of objects from the tree.

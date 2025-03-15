@@ -14,7 +14,7 @@ import {
 
 import { useTree } from "@/hooks/useTree";
 import { MOUSE } from "@/Enums/mouseEventsEnums";
-import { tree, node } from "@/types";
+import { tree, node } from "@/types/object_types";
 
 import SelectedObj from "@/components/workspace/board/selectedObj/selectedObj";
 

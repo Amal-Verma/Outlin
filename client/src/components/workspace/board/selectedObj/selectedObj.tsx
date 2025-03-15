@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useAppDispatch } from "@/lib/hooks";
-import { node } from "@/types";
+import { node } from "@/types/object_types";
 import { MOUSE } from "@/Enums/mouseEventsEnums";
 
 import { setMouseType } from "@/lib/features/workspaceSlice/boardDetailsSlice";

@@ -1,4 +1,4 @@
-import { tree, node } from '@/types';
+import { tree, node } from '@/types/object_types';
 import { generateReactCodeDiv } from './utils/generateReactCodeDiv';
 
 /**
