@@ -9,8 +9,7 @@ export type node = Node;
 export type tree = Tree;
 export type multiset = MultiSet;
 
-export type group = {[key: string]: string};
-export type attributes = {[key: string]: group};
+export type group = {[key: string]: string | number};
 export type essentials = {
   [key: string]: string | number;
   'tag': string;
@@ -20,6 +19,9 @@ export type essentials = {
   'height': number;
   'text': string;
 }
+export type attributes = {
+  "Essentials": essentials,
+  [key: string]: group;};
 
 
 // fix this

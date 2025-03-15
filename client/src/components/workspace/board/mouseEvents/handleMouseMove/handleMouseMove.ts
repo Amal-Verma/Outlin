@@ -41,8 +41,8 @@ export const handleMouseMove = (
     tempObjects?.length &&
     (drawType === DRAW.DRAW || drawType === DRAW.SELECTRANGE)
   ) {
-    tempObjects[0].body.Essentials.width += dx;
-    tempObjects[0].body.Essentials.height += dy;
+    tempObjects[0].body.attributes.Essentials.width += dx;
+    tempObjects[0].body.attributes.Essentials.height += dy;
   }
 
   // Handle panning

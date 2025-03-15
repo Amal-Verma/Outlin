@@ -9,18 +9,18 @@ import { generateReactCodeDivStyle } from './generateReactCodeDivStyle';
  * @returns The generated React code for the div element.
  */
 export const generateReactCodeDiv = (parent: node, rectangle: node, child: string) => {
-  const width = Math.abs((rectangle.body.Essentials.width / parent.body.Essentials.width)) * 100;
-  const height = Math.abs((rectangle.body.Essentials.height / parent.body.Essentials.height)) * 100;
-  const left = Math.abs(((rectangle.body.Essentials.x - parent.body.Essentials.x) / parent.body.Essentials.width)) * 100;
-  const top = Math.abs(((rectangle.body.Essentials.y - parent.body.Essentials.y) / parent.body.Essentials.height)) * 100;
+  const width = Math.abs((rectangle.body.attributes.Essentials.width / parent.body.attributes.Essentials.width)) * 100;
+  const height = Math.abs((rectangle.body.attributes.Essentials.height / parent.body.attributes.Essentials.height)) * 100;
+  const left = Math.abs(((rectangle.body.attributes.Essentials.x - parent.body.attributes.Essentials.x) / parent.body.attributes.Essentials.width)) * 100;
+  const top = Math.abs(((rectangle.body.attributes.Essentials.y - parent.body.attributes.Essentials.y) / parent.body.attributes.Essentials.height)) * 100;
 
   let out =   `
-  <${rectangle.body.Essentials.tag}
+  <${rectangle.body.attributes.Essentials.tag}
     style={{position: 'absolute', left: '${left}%', top: '${top}%', width: '${width}%', height: '${height}%',${generateReactCodeDivStyle(rectangle.body)}}}
   >`
 
-  if (rectangle.body.Essentials.text.length) {
-    out += '\n  ' +  rectangle.body.Essentials.text;
+  if (rectangle.body.attributes.Essentials.text.length) {
+    out += '\n  ' +  rectangle.body.attributes.Essentials.text;
   }
 
   if (child.length) {
@@ -29,7 +29,7 @@ export const generateReactCodeDiv = (parent: node, rectangle: node, child: strin
     });
   }
 
-  out +=  `\n  </${rectangle.body.Essentials.tag}>`;
+  out +=  `\n  </${rectangle.body.attributes.Essentials.tag}>`;
   
   return (
     out

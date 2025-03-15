@@ -37,32 +37,34 @@ const PropertyWindow: React.FC<PropertyWindowProps> = (props) => {
               forceRenderWorkspace={props.forceRenderWorkspace}
             />
             <PropertyGroup
-              key={`Property-groups-Essentials`}
+              key={`Property-groups-attributes.Essentials`}
               name="Essentials"
-              attribute={Tree.selectedObject[0].body.Essentials}
+              attribute={Tree.selectedObject[0].body.attributes.Essentials}
               onChange={(name: string, value: string) => {
                 if (
-                  typeof Tree.selectedObject[0].body.Essentials[name] ===
+                  typeof Tree.selectedObject[0].body.attributes.Essentials[name] ===
                   "number"
                 ) {
-                  Tree.selectedObject[0].body.Essentials[name] =
+                  Tree.selectedObject[0].body.attributes.Essentials[name] =
                     value.length > 0 ? parseInt(value) : 0;
                 } else {
-                  Tree.selectedObject[0].body.Essentials[name] = value;
+                  Tree.selectedObject[0].body.attributes.Essentials[name] = value;
                 }
               }}
             />
             {Object.entries(Tree.selectedObject[0].body.attributes).map(
               ([groupName, attrs], i) => (
-                <PropertyGroup
-                  key={`Property-groups-${i}`}
-                  name={groupName}
-                  attribute={attrs}
-                  onChange={(name: string, value: string) => {
-                    Tree.selectedObject[0].body.attributes[groupName][name] =
-                      value;
-                  }}
-                />
+                groupName !== "Essentials" ? (
+                  <PropertyGroup
+                    key={`Property-groups-${i}`}
+                    name={groupName}
+                    attribute={attrs}
+                    onChange={(name: string, value: string) => {
+                      Tree.selectedObject[0].body.attributes[groupName][name] =
+                        value;
+                    }}
+                  />
+                  ) : null
               )
             )}
           </React.Fragment>

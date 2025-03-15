@@ -32,8 +32,8 @@ describe("MultiSet", () => {
     const node1 = new Node(new Rectangle(10, 10, 20, 20), "group");
     multiSet.insert(node1);
 
-    node1.body.Essentials.x = 15;
-    node1.body.Essentials.y = 15;
+    node1.body.attributes.Essentials.x = 15;
+    node1.body.attributes.Essentials.y = 15;
     multiSet.update(node1);
 
     expect(multiSet.getMin()).toEqual([15, 15]);
@@ -46,10 +46,10 @@ describe("MultiSet", () => {
     multiSet.insert(node1);
     multiSet.insert(node2);
 
-    expect(groupNode.body.Essentials.x).toBe(9);
-    expect(groupNode.body.Essentials.y).toBe(9);
-    expect(groupNode.body.Essentials.width).toBe(42);
-    expect(groupNode.body.Essentials.height).toBe(42);
+    expect(groupNode.body.attributes.Essentials.x).toBe(9);
+    expect(groupNode.body.attributes.Essentials.y).toBe(9);
+    expect(groupNode.body.attributes.Essentials.width).toBe(42);
+    expect(groupNode.body.attributes.Essentials.height).toBe(42);
   });
 
   test("should update group node correctly with repeated updates", () => {
@@ -58,27 +58,27 @@ describe("MultiSet", () => {
     multiSet.insert(node1);
     multiSet.insert(node2);
 
-    node1.body.Essentials.x = 5;
-    node1.body.Essentials.y = 5;
-    node1.body.Essentials.width = 25;
-    node1.body.Essentials.height = 25;
+    node1.body.attributes.Essentials.x = 5;
+    node1.body.attributes.Essentials.y = 5;
+    node1.body.attributes.Essentials.width = 25;
+    node1.body.attributes.Essentials.height = 25;
     multiSet.update(node1);
 
-    expect(groupNode.body.Essentials.x).toBe(4);
-    expect(groupNode.body.Essentials.y).toBe(4);
-    expect(groupNode.body.Essentials.width).toBe(47);
-    expect(groupNode.body.Essentials.height).toBe(47);
+    expect(groupNode.body.attributes.Essentials.x).toBe(4);
+    expect(groupNode.body.attributes.Essentials.y).toBe(4);
+    expect(groupNode.body.attributes.Essentials.width).toBe(47);
+    expect(groupNode.body.attributes.Essentials.height).toBe(47);
 
-    node1.body.Essentials.x = 15;
-    node1.body.Essentials.y = 15;
-    node1.body.Essentials.width = 30;
-    node1.body.Essentials.height = 30;
+    node1.body.attributes.Essentials.x = 15;
+    node1.body.attributes.Essentials.y = 15;
+    node1.body.attributes.Essentials.width = 30;
+    node1.body.attributes.Essentials.height = 30;
     multiSet.update(node1);
 
-    expect(groupNode.body.Essentials.x).toBe(14);
-    expect(groupNode.body.Essentials.y).toBe(14);
-    expect(groupNode.body.Essentials.width).toBe(37);
-    expect(groupNode.body.Essentials.height).toBe(37);
+    expect(groupNode.body.attributes.Essentials.x).toBe(14);
+    expect(groupNode.body.attributes.Essentials.y).toBe(14);
+    expect(groupNode.body.attributes.Essentials.width).toBe(37);
+    expect(groupNode.body.attributes.Essentials.height).toBe(37);
   });
 
   test("should handle complex sequence of insertions and deletions", () => {

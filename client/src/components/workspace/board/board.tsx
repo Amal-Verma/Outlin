@@ -194,7 +194,7 @@ const Board: React.FC<boardProps> = (props) => {
               )
             }
           >
-            {node.body.Essentials.text}
+            {node.body.attributes.Essentials.text}
           </div>
         );
       })}

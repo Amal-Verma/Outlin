@@ -26,8 +26,8 @@ export const copySelectedObjects = (
 
     } else {
       const obj = cloneDeep(node.body);
-      obj.Essentials.x += offsetX;
-      obj.Essentials.y += offsetY;
+      obj.attributes.Essentials.x += offsetX;
+      obj.attributes.Essentials.y += offsetY;
       copyObjects.push(obj);
     }
   });

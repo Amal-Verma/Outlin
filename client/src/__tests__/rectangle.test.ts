@@ -3,10 +3,10 @@ import Rectangle from "../objects/rectangle/rectangle";
 describe("Rectangle", () => {
   test("should initialize correctly", () => {
     const rect = new Rectangle(10, 20, 30, 40);
-    expect(rect.Essentials.x).toBe(10);
-    expect(rect.Essentials.y).toBe(20);
-    expect(rect.Essentials.width).toBe(30);
-    expect(rect.Essentials.height).toBe(40);
+    expect(rect.attributes.Essentials.x).toBe(10);
+    expect(rect.attributes.Essentials.y).toBe(20);
+    expect(rect.attributes.Essentials.width).toBe(30);
+    expect(rect.attributes.Essentials.height).toBe(40);
   });
 
   test("should add attributes correctly", () => {
@@ -24,10 +24,10 @@ describe("Rectangle", () => {
   test("should normalize dimensions correctly", () => {
     const rect = new Rectangle(10, 20, -30, -40);
     rect.normalize();
-    expect(rect.Essentials.x).toBe(-20);
-    expect(rect.Essentials.y).toBe(-20);
-    expect(rect.Essentials.width).toBe(30);
-    expect(rect.Essentials.height).toBe(40);
+    expect(rect.attributes.Essentials.x).toBe(-20);
+    expect(rect.attributes.Essentials.y).toBe(-20);
+    expect(rect.attributes.Essentials.width).toBe(30);
+    expect(rect.attributes.Essentials.height).toBe(40);
   });
 
   test("should generate style correctly", () => {

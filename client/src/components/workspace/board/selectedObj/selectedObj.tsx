@@ -25,10 +25,10 @@ const SelectedObj: React.FC<selectedObjProps> = (props) => {
   const dispatch = useAppDispatch();
 
   // Calculate the coordinates for the selected object
-  let x1 = (props.selectedObj.body.Essentials.x + props.xref) * props.scale;
-  let y1 = (props.selectedObj.body.Essentials.y + props.yref) * props.scale;
-  let x2 = x1 + props.selectedObj.body.Essentials.width * props.scale;
-  let y2 = y1 + props.selectedObj.body.Essentials.height * props.scale;
+  let x1 = (props.selectedObj.body.attributes.Essentials.x + props.xref) * props.scale;
+  let y1 = (props.selectedObj.body.attributes.Essentials.y + props.yref) * props.scale;
+  let x2 = x1 + props.selectedObj.body.attributes.Essentials.width * props.scale;
+  let y2 = y1 + props.selectedObj.body.attributes.Essentials.height * props.scale;
 
   if (x1 > x2) [x1, x2] = [x2, x1];
   if (y1 > y2) [y1, y2] = [y2, y1];

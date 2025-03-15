@@ -32,7 +32,7 @@ export const importTree = (
   // Create nodes with new IDs and add them to the nodeMap
   for (const importedNode of jsonObject.nodes) {
     const newBody = new Rectangle(0, 0, 100, 100);
-    newBody.Essentials = importedNode.body.Essentials;
+    newBody.attributes.Essentials = importedNode.body.attributes.Essentials;
     newBody.attributes = importedNode.body.attributes;
 
     const newNode = new Node(newBody, groupName);

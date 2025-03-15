@@ -41,25 +41,25 @@ export default class MultiSet {
     console.log("inserting into:", node.id);
 
     // Insert x and y values into the respective trees
-    this.insertValue(this.treeX, node.body.Essentials.x);
-    this.insertValue(this.treeY, node.body.Essentials.y);
+    this.insertValue(this.treeX, node.body.attributes.Essentials.x);
+    this.insertValue(this.treeY, node.body.attributes.Essentials.y);
 
     // Insert width and height values into the respective trees
     this.insertValue(
       this.treeX,
-      node.body.Essentials.x + node.body.Essentials.width
+      node.body.attributes.Essentials.x + node.body.attributes.Essentials.width
     );
     this.insertValue(
       this.treeY,
-      node.body.Essentials.y + node.body.Essentials.height
+      node.body.attributes.Essentials.y + node.body.attributes.Essentials.height
     );
 
     // Map node ID to its coordinates and dimensions
     this.MapIdToNode.set(node.id, {
-      x: node.body.Essentials.x,
-      y: node.body.Essentials.y,
-      width: node.body.Essentials.width,
-      height: node.body.Essentials.height,
+      x: node.body.attributes.Essentials.x,
+      y: node.body.attributes.Essentials.y,
+      width: node.body.attributes.Essentials.width,
+      height: node.body.attributes.Essentials.height,
     });
 
     this.length++;
@@ -111,10 +111,10 @@ export default class MultiSet {
     maxX += MultiSet.offset;
     maxY += MultiSet.offset;
 
-    this.groupNode.body.Essentials.x = minX || 0;
-    this.groupNode.body.Essentials.y = minY || 0;
-    this.groupNode.body.Essentials.width = (maxX || 0) - (minX || 0);
-    this.groupNode.body.Essentials.height = (maxY || 0) - (minY || 0);
+    this.groupNode.body.attributes.Essentials.x = minX || 0;
+    this.groupNode.body.attributes.Essentials.y = minY || 0;
+    this.groupNode.body.attributes.Essentials.width = (maxX || 0) - (minX || 0);
+    this.groupNode.body.attributes.Essentials.height = (maxY || 0) - (minY || 0);
   }
 
   // Update a node in the multiset

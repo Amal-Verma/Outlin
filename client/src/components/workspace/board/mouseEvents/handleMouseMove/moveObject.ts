@@ -22,7 +22,7 @@ export const moveObject = (
   selectedObject = getGroupNodes(Tree, selectedObject);
 
   selectedObject.forEach((node) => {
-    node.body.Essentials.x += dx;
-    node.body.Essentials.y += dy;
+    node.body.attributes.Essentials.x += dx;
+    node.body.attributes.Essentials.y += dy;
   });
 };

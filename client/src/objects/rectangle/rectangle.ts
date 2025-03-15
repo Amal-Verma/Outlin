@@ -1,4 +1,4 @@
-import { attributes, essentials } from "@/types/object_types";
+import { attributes } from "@/types/object_types";
 import { getAttributes } from "./getAttributes";
 
 /**
@@ -6,7 +6,6 @@ import { getAttributes } from "./getAttributes";
  */
 export default class Rectangle {
   attributes: attributes;
-  Essentials: essentials;
 
   /**
    * Creates an instance of Rectangle.
@@ -16,16 +15,16 @@ export default class Rectangle {
    * @param height - The height of the rectangle.
    */
   constructor(x: number, y: number, width: number, height: number) {
-    this.Essentials = {
-      tag: "div",
-      x: x,
-      y: y,
-      width: width,
-      height: height,
-      text: "",
-    };
-
     this.attributes = {
+      Essentials: {
+        tag: "div",
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        text: "",
+      },
+
       Colors: {
         color: "#000000",
         "background-color": "#00ffff",
@@ -59,12 +58,12 @@ export default class Rectangle {
    */
   contains(other: Rectangle): boolean {
     return (
-      this.Essentials.x <= other.Essentials.x &&
-      this.Essentials.y <= other.Essentials.y &&
-      this.Essentials.x + this.Essentials.width >=
-        other.Essentials.x + other.Essentials.width &&
-      this.Essentials.y + this.Essentials.height >=
-        other.Essentials.y + other.Essentials.height
+      this.attributes.Essentials.x <= other.attributes.Essentials.x &&
+      this.attributes.Essentials.y <= other.attributes.Essentials.y &&
+      this.attributes.Essentials.x + this.attributes.Essentials.width >=
+        other.attributes.Essentials.x + other.attributes.Essentials.width &&
+      this.attributes.Essentials.y + this.attributes.Essentials.height >=
+        other.attributes.Essentials.y + other.attributes.Essentials.height
     );
   }
 
@@ -73,13 +72,13 @@ export default class Rectangle {
    */
   normalize(): void {
     console.log("normalize");
-    if (this.Essentials.width < 0) {
-      this.Essentials.x += this.Essentials.width;
-      this.Essentials.width = -this.Essentials.width;
+    if (this.attributes.Essentials.width < 0) {
+      this.attributes.Essentials.x += this.attributes.Essentials.width;
+      this.attributes.Essentials.width = -this.attributes.Essentials.width;
     }
-    if (this.Essentials.height < 0) {
-      this.Essentials.y += this.Essentials.height;
-      this.Essentials.height = -this.Essentials.height;
+    if (this.attributes.Essentials.height < 0) {
+      this.attributes.Essentials.y += this.attributes.Essentials.height;
+      this.attributes.Essentials.height = -this.attributes.Essentials.height;
     }
   }
 
@@ -91,10 +90,10 @@ export default class Rectangle {
    * @returns The generated style as an object.
    */
   generateStyle(xref: number, yref: number, scale: number) {
-    const x = (this.Essentials.x + xref) * scale;
-    const y = (this.Essentials.y + yref) * scale;
-    const width = this.Essentials.width * scale;
-    const height = this.Essentials.height * scale;
+    const x = (this.attributes.Essentials.x + xref) * scale;
+    const y = (this.attributes.Essentials.y + yref) * scale;
+    const width = this.attributes.Essentials.width * scale;
+    const height = this.attributes.Essentials.height * scale;
 
     let style = `{
             "position":"absolute",
@@ -104,8 +103,9 @@ export default class Rectangle {
             "height":"${Math.abs(height)}px",`;
 
     for (const group in this.attributes) {
+      if (group === "Essentials") continue;
       for (const attribute in this.attributes[group]) {
-        style += getAttributes(attribute, this.attributes[group][attribute]);
+        style += getAttributes(attribute, this.attributes[group][attribute].toString());
       }
     }
 

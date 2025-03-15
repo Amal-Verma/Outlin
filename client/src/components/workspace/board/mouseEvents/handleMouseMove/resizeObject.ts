@@ -36,31 +36,31 @@ export const resizeObject = (
     if (!object.body.contains(node.body)) return;
 
     const dw =
-      (object.body.Essentials.width + dx2 - dx1) / object.body.Essentials.width;
+      (object.body.attributes.Essentials.width + dx2 - dx1) / object.body.attributes.Essentials.width;
     const dh =
-      (object.body.Essentials.height + dy2 - dy1) /
-      object.body.Essentials.height;
+      (object.body.attributes.Essentials.height + dy2 - dy1) /
+      object.body.attributes.Essentials.height;
 
     const ndx1 =
-      object.body.Essentials.x -
-      node.body.Essentials.x +
+      object.body.attributes.Essentials.x -
+      node.body.attributes.Essentials.x +
       dx1 +
-      (node.body.Essentials.x - object.body.Essentials.x) * dw;
+      (node.body.attributes.Essentials.x - object.body.attributes.Essentials.x) * dw;
 
     const ndy1 =
-      object.body.Essentials.y -
-      node.body.Essentials.y +
+      object.body.attributes.Essentials.y -
+      node.body.attributes.Essentials.y +
       dy1 +
-      (node.body.Essentials.y - object.body.Essentials.y) * dh;
+      (node.body.attributes.Essentials.y - object.body.attributes.Essentials.y) * dh;
 
-    node.body.Essentials.x += ndx1;
-    node.body.Essentials.y += ndy1;
-    node.body.Essentials.width = node.body.Essentials.width * dw;
-    node.body.Essentials.height = node.body.Essentials.height * dh;
+    node.body.attributes.Essentials.x += ndx1;
+    node.body.attributes.Essentials.y += ndy1;
+    node.body.attributes.Essentials.width = node.body.attributes.Essentials.width * dw;
+    node.body.attributes.Essentials.height = node.body.attributes.Essentials.height * dh;
   });
 
-  object.body.Essentials.x += dx1;
-  object.body.Essentials.y += dy1;
-  object.body.Essentials.width += dx2 - dx1;
-  object.body.Essentials.height += dy2 - dy1;
+  object.body.attributes.Essentials.x += dx1;
+  object.body.attributes.Essentials.y += dy1;
+  object.body.attributes.Essentials.width += dx2 - dx1;
+  object.body.attributes.Essentials.height += dy2 - dy1;
 };
