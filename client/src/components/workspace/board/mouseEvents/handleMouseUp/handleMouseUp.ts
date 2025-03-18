@@ -52,7 +52,7 @@ export const handleMouseUp = (
         EditDrawType(DRAW.SELECT);
         break;
       case DRAW.DRAW:
-        let create_nodes: Array<node> = [];
+        const create_nodes: Array<node> = [];
         tempObjects.forEach((tempObject) => {
           const newNode = createNode(Tree, tempObject.body)
           create_nodes.push(newNode);

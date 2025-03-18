@@ -7,7 +7,6 @@ import AttributeSelectorModal from "./AttributeSelectorModal";
 import { tree } from "@/types/object_types";
 import { useTree } from "@/hooks/useTree";
 import { attribute_change } from "@/types/undo_redo_instructions_types";
-import { set } from "lodash";
 
 interface PropertyWindowProps {
   renderWorkspace: boolean;
@@ -17,8 +16,6 @@ interface PropertyWindowProps {
 const PropertyWindow: React.FC<PropertyWindowProps> = (props) => {
   // Hook to access the tree structure
   const Tree: tree = useTree;
-
-  const [is_changed, set_is_changed] = React.useState(false);
 
   const [change_instruction, set_change_instruction] = React.useState<attribute_change | null>();
 
@@ -37,7 +34,6 @@ const PropertyWindow: React.FC<PropertyWindowProps> = (props) => {
     if (timeout && timeout.hash === hash) {
       set_timeout(null);
       set_change_instruction(null);
-      set_is_changed(false);
     }    
   }
 
@@ -85,7 +81,6 @@ const PropertyWindow: React.FC<PropertyWindowProps> = (props) => {
                     // }}
                     onChange={(name: string, value: string) => {
                       const hash = `${Tree.selectedObject[0].id}-${groupName}-${name}`;
-                      set_is_changed(true);
 
                       if (!timeout || timeout.hash !== hash) {
                         const new_change_instruction: attribute_change = {
