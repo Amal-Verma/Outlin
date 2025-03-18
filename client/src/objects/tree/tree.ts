@@ -1,6 +1,7 @@
 import { obj, node, rectangle, multiset } from "@/types/object_types";
 import Rectangle from "@/objects/rectangle/rectangle";
 import MultiSet from "../multiset/multiset";
+import UndoRedoTracker from "../undo_redo_tracker/undo_redo_tracker";
 
 import { insertNode } from "./functions/insert";
 import { deleteNode } from "./functions/delete";
@@ -15,6 +16,7 @@ import { importTree } from "./functions/import";
 import { createNode } from "./functions/createNode";
 import { normalize } from "./functions/normalize";
 import { groupObjects } from "./functions/groupObjects";
+import { attribute_change, instruction } from "@/types/undo_redo_instructions_types";
 
 /**
  * Represents a tree structure containing nodes and various operations on them.
@@ -33,6 +35,8 @@ export default class Tree {
   selectedObject: Array<node>;
   objectMap: Map<string, node>;
   groupMap: Map<string, multiset>;
+  changeAttributeInstructionsMapTracker: Map<string, Array<attribute_change>>;
+  undo_redo_tracker: UndoRedoTracker;
 
   /**
    * Creates an instance of Tree.
@@ -43,6 +47,8 @@ export default class Tree {
     this.selectedObject = [];
     this.objectMap = new Map<string, node>();
     this.groupMap = new Map<string, multiset>();
+    this.changeAttributeInstructionsMapTracker = new Map<string, Array<attribute_change>>();
+    this.undo_redo_tracker = new UndoRedoTracker(this);
 
     if (typeof window === undefined) {
       this.root = createNode(
@@ -199,5 +205,27 @@ export default class Tree {
    */
   groupObjects(groupName: string) {
     groupObjects(this, groupName);
+  }
+
+  /**
+   * Adds an instruction to the undo queue.
+   * @param instr - The instruction to be added.
+   */
+  addInstruction(instr: instruction) {
+    this.undo_redo_tracker.addInstruction(instr);
+  }
+
+  /**
+   * Undoes the last operation.
+   */
+  undo() {
+    this.undo_redo_tracker.undo();
+  }
+
+  /**
+   * Redoes the last operation.
+   */
+  redo() {
+    this.undo_redo_tracker.redo();
   }
 }

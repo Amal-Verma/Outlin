@@ -32,8 +32,19 @@ export const resizeObject = (
 
   // Resize all selected object except object
   selectedObject.forEach((node) => {
-    if (node.body === object.body) return;
+
     if (!object.body.contains(node.body)) return;
+    
+    if (!Tree.changeAttributeInstructionsMapTracker.has(node.id)) {
+      Tree.changeAttributeInstructionsMapTracker.set(node.id, [
+        {id: node.id, attribute_group: "Essentials", attribute: "x", previous_value: node.body.attributes.Essentials.x, next_value: node.body.attributes.Essentials.x},
+        {id: node.id, attribute_group: "Essentials", attribute: "y", previous_value: node.body.attributes.Essentials.y, next_value: node.body.attributes.Essentials.y},
+        {id: node.id, attribute_group: "Essentials", attribute: "width", previous_value: node.body.attributes.Essentials.width, next_value: node.body.attributes.Essentials.width},
+        {id: node.id, attribute_group: "Essentials", attribute: "height", previous_value: node.body.attributes.Essentials.height, next_value: node.body.attributes.Essentials.height},
+      ]);
+    }
+
+    if (node.body === object.body) return;
 
     const dw =
       (object.body.attributes.Essentials.width + dx2 - dx1) / object.body.attributes.Essentials.width;
@@ -57,6 +68,7 @@ export const resizeObject = (
     node.body.attributes.Essentials.y += ndy1;
     node.body.attributes.Essentials.width = node.body.attributes.Essentials.width * dw;
     node.body.attributes.Essentials.height = node.body.attributes.Essentials.height * dh;
+
   });
 
   object.body.attributes.Essentials.x += dx1;

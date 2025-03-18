@@ -22,6 +22,15 @@ export const moveObject = (
   selectedObject = getGroupNodes(Tree, selectedObject);
 
   selectedObject.forEach((node) => {
+    if (!Tree.changeAttributeInstructionsMapTracker.has(node.id)) {
+      Tree.changeAttributeInstructionsMapTracker.set(node.id, [
+        {id: node.id, attribute_group: "Essentials", attribute: "x", previous_value: node.body.attributes.Essentials.x, next_value: node.body.attributes.Essentials.x + dx},
+        {id: node.id, attribute_group: "Essentials", attribute: "y", previous_value: node.body.attributes.Essentials.y, next_value: node.body.attributes.Essentials.y + dy},
+      ]);
+    }
+  });
+
+  selectedObject.forEach((node) => {
     node.body.attributes.Essentials.x += dx;
     node.body.attributes.Essentials.y += dy;
   });
