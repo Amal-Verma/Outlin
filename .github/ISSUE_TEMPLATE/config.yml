@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🤝 Contributing Guidelines
+    url: https://github.com/Amal-Verma/Outlin/blob/main/CONTRIBUTING.md
+    about: Please read the contribution guidelines before creating an issue
+  - name: 💬 Discord Community
+    url: https://discord.gg/outlin
+    about: Ask questions and discuss with other Outlin users
